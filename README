@@ -1,0 +1,12 @@
+#####################################################
+############Reflections
+############v0.2
+############30 January 2018
+#####################################################
+#####################################################
+
+R script to pull student data from a Google comment thread
+and quantify student participation
+
+first: input data and student names into R
+next: streamline inputs/outputs
