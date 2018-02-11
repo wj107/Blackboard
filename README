@@ -1,12 +1,21 @@
-#####################################################
-############Reflections
-############v0.2
-############30 January 2018
-#####################################################
-#####################################################
+###########Blackboard and Google Slides discussion script
 
-R script to pull student data from a Google comment thread
-and quantify student participation
+v1.0: 
 
-first: input data and student names into R
-next: streamline inputs/outputs
+input: copy of text from blackboard "collection" or a Google slides comment
+thread.
+
+output: data frame with student names, # of posts, # of days posted, and word 
+count
+
+for Blackboard, it's passable
+for Google Slides, it's brittle... not clear-cut 'identifiers' for comment text
+
+to-do: 
+patch up Google slide version better
+input class lists automatically
+output as ready-to-upload spreadsheet
+input prompts for grade comments
+(ie, merge the R + Excel parts of the grading
+
+
