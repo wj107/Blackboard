@@ -1,14 +1,22 @@
-#--------------------------------------------------------------------
-#----------------Blackboard Grading Tools
-#----------------
-#----------------v0.5
-#----------------13 March 2018
-#--------------------------------------------------------------------
+#########################################################
+#############Blackboard Grading Tools
+#############v0.51 -- 14 March 2018
+#########################################################
+#---------- Author: wj107
+#---------- Email: will.johnson@gmail.com
+#--------------------------------------------------------
+#----------------A number of scripts to handle grading
+#----------------in Blackboard: obtain rosters & assignments,
+#----------------enter missed work, obtain metrics on discussion
+#----------------boards and reflections
 
-#-------type a description! of the tools!!!
+#---------------------------------------------------------------
 
-R script to pull student data from a Google comment thread
-and quantify student participation
+#------------------v0.51 has:
+#-----------'bboard_init' to obtain roster and assignment list from gradebook csv
+#-----------'work_missing' to enter in work into gradebook that is not completed
+#-----------'Dboard' and 'Reflections2' to obtain metrics on student performance in discussion/reflection forums
 
-first: input data and student names into R
-next: streamline inputs/outputs
+#------------------v0.51+ needs:
+#-----------integrate Dboard & reflections directly into an uploader sheet
+#-----------same for assignments:  type comments right in!

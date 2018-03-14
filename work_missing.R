@@ -29,7 +29,7 @@ work.missing<-function(
 #---convert answer to index
 	sapply(1:N, function(i) which(dat[[3]]==who[i]))->i
 #---subset roster who didn't turn in work
-	dat[[2]][1,]->who
+	dat[[2]][c(1,i),1:3]->who
 
 #---grade column
 	grade<-c(assignment, rep(0,N))
@@ -46,12 +46,12 @@ work.missing<-function(
 
 #---put it together!!
 	uploader<-cbind(who, grade,c5,c6,c7,c8)
-
+	names(uploader)<-NULL
 #----write uploader file
 	write.csv(
 		uploader,
 		file=paste0(fname,".csv"),
-		col.names=NA,
+		#col.names=NA,
 		row.names=F
 		)
 	}
