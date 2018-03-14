@@ -4,6 +4,7 @@
 #----------------------------------------------------------------------------
 #----------------------------------------------------------------------------
 
+#########################################################
 #---create function that takes course info, reflections raw data, outputs 'nice' metric data
 
 ref.info<-function(
@@ -15,67 +16,45 @@ ref.info<-function(
 		output="ref_info"
 		){
 
+#####################################################
+#--------Check Arguments.
+
 #---do you have course info??
 	if(is.null(course)) stop("Argument `course' is undefined with no default")
 #---do you have dboard data??
 	if(is.null(dat)) stop("Argument `dat' is undefined with no default")
 
-#---select d board to grade
+####################################################
+#---MENU: select reflection to grade
 
-#---------would love to grep only the d boards, here!!!
+#---------would love to grep only the reflections, here!!!
 	print("What reflection are you looking at?")
 	menu(course[[1]])->tmp
-
-#---define assignment
-	course[[1]][tmp]->assignment
+	course[[1]][tmp]->reflection
 
 #---define students
 	course[[3]]->students
 	
-#---who didn't turn in work??
-#	select.list(dat[[3]][-c(1,length(dat[[3]]))],multiple=T,graphic=F,title="Who didn't turn in work??")->who
-#	length(who)->N
-#---convert answer to index
-#	sapply(1:N, function(i) which(dat[[3]]==who[i]))->i
-#---subset roster who didn't turn in work
-#	dat[[2]][c(1,i),1:3]->who
 
-#---grade column
-#	grade<-c(assignment, rep(0,N))
-#---other, random columns 5,6,8
-	#col5
-#	  c5<-c("Grading Notes",rep("",N))
-#	  c6<-c("Notes Format",rep("SMART_TEXT",N))
-#	  c8<-c("Feedback Format",rep("SMART_TEXT",N))
-
-#----------------------
+#####################################################
 #--------COMMENTS!!
+
+#---you NEED default comments!!
 
 #---good work!
 	readline(prompt="Write a comment for excellent participation.")->c1
-#---good work!
-	readline(prompt="Write a comment for good participation.")->c2
-#---good work!
-	readline(prompt="Write a comment for mediocre participation.")->c3
-#---good work!
-	readline(prompt="Write a comment for lousy participation.")->c4
+	readline(prompt="Write a comment for writing enough words, but not enough days.")->c2
+	readline(prompt="Write a comment for writing enough days, but not enough words.")->c3
+	readline(prompt="Write a comment for minimal participation.")->c4
+	readline(prompt="Write a comment for no participation.")->c5
 
 #---compile comments altogether (w/assignment title
-	comments<-c(assignment, c1,c2,c3,c4)
+	comments<-c(reflection, c1,c2,c3,c4,c5)
 
-#---comment column
-#	c7<-c("Feedback to Learner", rep(feedback, N))
-
-#---put it together!!
-#	uploader<-cbind(who, grade,c5,c6,c7,c8)
-#	names(uploader)<-NULL
 
 ######################################
-#######original reflections2 code
-######################################
+#--------EXTRACT student.info from reflection data
 
-#########assume dat<-raw reflection data
-#########assume students<-vector of "first last" names + "William Johnson"
 
 ###find all authors, dates, and replies in posting data
 	auth<-which(dat %in% students)
@@ -164,9 +143,8 @@ ref.info<-function(
 ####collect raw data in data.frame
 	post.info<-data.frame(auth,days,wc,type,row.names=NULL)
 
-##########################################
-#########SUMMARIZE raw data
-##########################################
+########################################################
+#-----------OUTPUT!!! prep student.info
 
 ###define unique author info
 	AUTH<-as.character(levels(post.info$auth))
@@ -179,7 +157,7 @@ ref.info<-function(
 ###define number of replies
 	REPLIES<-tapply(post.info$type,post.info$auth,function(x) sum(x=="Reply"))
 
-if(length(AUTH)>5) comments<-c(comments,rep("",length(AUTH)-5))
+if(length(AUTH)>6) comments<-c(comments,rep("",length(AUTH)-6))
 
 student.info<-data.frame(AUTH,TOTAL.POSTS,DAYS,WC,REPLIES,comments,row.names=NULL)
 

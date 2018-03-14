@@ -4,6 +4,7 @@
 #----------------------------------------------------
 #----------------------------------------------------
 
+##########################################
 #---create function that creates spreadsheet to upload to bboard
 
 work.missing<-function(
@@ -13,8 +14,14 @@ work.missing<-function(
 		fname="uploader"
 		){
 
+#########################################
+#------check arguments
+
 #---do you have data??
 	if(is.null(dat)) stop("Argument `dat' is undefined with no default")
+
+########################################
+#------MENU: what assignment?
 
 #---select assignment to grade
 	print("What assignment are you looking at?")
@@ -22,6 +29,11 @@ work.missing<-function(
 
 #---define assignment
 	dat[[1]][tmp]->assignment
+
+########################################
+#------MENU: what students?
+
+
 	
 #---who didn't turn in work??
 	select.list(dat[[3]][-c(1,length(dat[[3]]))],multiple=T,graphic=F,title="Who didn't turn in work??")->who
@@ -30,6 +42,9 @@ work.missing<-function(
 	sapply(1:N, function(i) which(dat[[3]]==who[i]))->i
 #---subset roster who didn't turn in work
 	dat[[2]][c(1,i),1:3]->who
+
+########################################
+#------Comment.
 
 #---grade column
 	grade<-c(assignment, rep(0,N))
@@ -43,6 +58,10 @@ work.missing<-function(
 	readline(prompt="Write a comment for students missing the assignment.")->feedback
 #---comment column
 	c7<-c("Feedback to Learner", rep(feedback, N))
+
+########################################
+#--------OUTPUT
+
 
 #---put it together!!
 	uploader<-cbind(who, grade,c5,c6,c7,c8)
