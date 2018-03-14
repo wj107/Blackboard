@@ -1,6 +1,6 @@
 #########################################################
 #############Blackboard Grading Tools
-#############v0.52 -- 14 March 2018
+#############v0.53 -- 14 March 2018
 #########################################################
 #---------- Author: wj107
 #---------- Email: will.johnson@gmail.com
@@ -12,15 +12,13 @@
 
 #---------------------------------------------------------------
 
-#------------------v0.52 has:
+#------------------v0.53 has:
 #-----------'bboard_init' to obtain roster and assignment list from gradebook csv
 #-----------'work_missing' to enter in work into gradebook that is not completed
 #-----------'Dboard' and 'Reflections2' to obtain metrics on student performance in discussion/reflection forums
 #-----------'dboard2' integrates roster/assignment list with dboard data
+#-----------'reflections3' integrates roster/assignment list with reflectiona data
 
-
-
-#------------------v0.52+ needs:
-#-----------integrate roster/assignment data into reflections
+#------------------v0.53+ needs:
 #-----------integrate Dboard & reflections directly into an uploader sheet
 #-----------same for assignments:  type comments right in!
