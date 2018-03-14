@@ -1,0 +1,7 @@
+#-------------- gitignore file!
+
+#----no swaps
+	*.swp
+
+#----no csv's
+	*.csv
